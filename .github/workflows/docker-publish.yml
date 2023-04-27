@@ -35,13 +35,13 @@ jobs:
             cmake: '3.25'
             vcpkg: '2023.04.15'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'debian-11'
             gcc: '10'
             cmake: '3.26'
             vcpkg: '2023.04.15'
             runner: ubuntu-22.04
-            build: true
+            build: false
 
     runs-on: ${{ matrix.runner }}
 

@@ -8,7 +8,8 @@ LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cm
 # https://github.com/mono/mono/issues/21584
 # https://lindevs.com/install-vcpkg-on-ubuntu
 
-RUN apt-get update && apt-get install -y `
+RUN apt-get update && `
+    DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
     git `
     build-essential `
     gcc-10 `

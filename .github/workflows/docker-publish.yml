@@ -17,7 +17,7 @@ jobs:
             cmake: '3.25'
             vcpkg: '2023.04.15'
             runner: ubuntu-20.04
-            build: true
+            build: false
           - base: 'ubuntu-20.04'
             gcc: '10'
             cmake: '3.25'

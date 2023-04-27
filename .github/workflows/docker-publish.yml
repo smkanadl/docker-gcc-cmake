@@ -50,9 +50,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image ${{ matrix.sdk }}-${{ matrix.image }}
+      - name: Build and push Docker image ${{ matrix.base }}
         if: matrix.build == true
         run: |
-          docker build ${{ github.workspace }}/src/${{ base }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}-gcc-${{ gcc }}-cmake-${{ cmake }}-vcpkg-{{ vcpkg }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}
-          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}-gcc-${{ gcc }}-cmake-${{ cmake }}-vcpkg-{{ vcpkg }}
-          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}
+          docker build ${{ github.workspace }}/src/${{ matrix.base }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ cmatrix.make }}-vcpkg-{{ matrix.vcpkg }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}
+          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ matrix.cmake }}-vcpkg-{{ matrix.vcpkg }}
+          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}

@@ -16,19 +16,31 @@ jobs:
             gcc: '8'
             cmake: '3.25'
             vcpkg: '2023.04.15'
-            runner: ubuntu-20.04
+            runner: ubuntu-22.04
             build: false
           - base: 'ubuntu-20.04'
             gcc: '10'
             cmake: '3.26'
             vcpkg: '2023.04.15'
-            runner: ubuntu-20.04
-            build: true
+            runner: ubuntu-22.04
+            build: false
           - base: 'ubuntu-22.04'
             gcc: '11'
             cmake: '3.26'
             vcpkg: '2023.04.15'
-            runner: ubuntu-20.04
+            runner: ubuntu-22.04
+            build: false
+          - base: 'debian-10'
+            gcc: '8'
+            cmake: '3.25'
+            vcpkg: '2023.04.15'
+            runner: ubuntu-22.04
+            build: true
+          - base: 'debian-11'
+            gcc: '10'
+            cmake: '3.26'
+            vcpkg: '2023.04.15'
+            runner: ubuntu-22.04
             build: true
 
     runs-on: ${{ matrix.runner }}

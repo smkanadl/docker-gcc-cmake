@@ -53,6 +53,6 @@ jobs:
       - name: Build and push Docker image ${{ matrix.base }}
         if: matrix.build == true
         run: |
-          docker build ${{ github.workspace }}/src/${{ matrix.base }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ matrix.cmake }}-vcpkg-{{ matrix.vcpkg }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}
-          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ matrix.cmake }}-vcpkg-{{ matrix.vcpkg }}
+          docker build ${{ github.workspace }}/src/${{ matrix.base }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ matrix.cmake }}-vcpkg-${{ matrix.vcpkg }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}
+          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}-gcc-${{ matrix.gcc }}-cmake-${{ matrix.cmake }}-vcpkg-${{ matrix.vcpkg }}
           docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ matrix.base }}

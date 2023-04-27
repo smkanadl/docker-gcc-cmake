@@ -1,0 +1,58 @@
+name: Docker
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - base: 'ubuntu-18.04'
+            gcc: '8'
+            cmake: '3.25'
+            vcpkg: '2023.04.15'
+            runner: ubuntu-2022
+            build: true
+          - base: 'ubuntu-20.04'
+            gcc: '10'
+            cmake: '3.25'
+            vcpkg: '2023.04.15'
+            runner: ubuntu-2022
+            build: true
+          - base: 'ubuntu-22.04'
+            gcc: '11'
+            cmake: '3.25'
+            vcpkg: '2023.04.15'
+            runner: ubuntu-2022
+            build: true
+
+    runs-on: ${{ matrix.runner }}
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        if: matrix.build == true
+        uses: actions/checkout@v3
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        if: matrix.build == true
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image ${{ matrix.sdk }}-${{ matrix.image }}
+        if: matrix.build == true
+        run: |
+          docker build ${{ github.workspace }}/src/${{ base }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}-gcc-${{ gcc }}-cmake-${{ cmake }}-vcpkg-{{ vcpkg }} --tag ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}
+          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}-gcc-${{ gcc }}-cmake-${{ cmake }}-vcpkg-{{ vcpkg }}
+          docker push ghcr.io/smkanadl/docker-gcc-cmake:${{ base }}

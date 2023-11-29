@@ -33,7 +33,7 @@ RUN apt-get update && `
     rm /usr/share/keyrings/kitware-archive-keyring.gpg && `
     DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
     kitware-archive-keyring `
-    libssl1.1
+    libssl1.1 `
     cmake `
     && `
     rm -rf /var/lib/apt/lists/* && `

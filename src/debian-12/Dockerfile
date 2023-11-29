@@ -23,7 +23,7 @@ RUN apt-get update && `
     tar `
     mono-complete `
     && `
-    tee /etc/apt/sources.list.d/focal-security.list && `
+    echo 'deb http://security.ubuntu.com/ubuntu focal-security main' | tee /etc/apt/sources.list.d/focal-security.list && `
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C && `
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 `
     && `

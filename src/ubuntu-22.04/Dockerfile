@@ -35,7 +35,7 @@ RUN apt-get update && `
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 40 && `
     git clone https://github.com/Microsoft/vcpkg.git && `
     cd vcpkg && `
-    git checkout 9edb1b8e590cc086563301d735cae4b6e732d2d2 && `
+    git checkout fba75d09065fcc76a25dcf386b1d00d33f5175af && `
     ./bootstrap-vcpkg.sh -disableMetrics && `
     cd .. && `
     chmod -R 777 vcpkg

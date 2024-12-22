@@ -17,34 +17,40 @@ jobs:
             cmake: '3.25'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'ubuntu-20.04'
             gcc: '10'
             cmake: '3.29.3'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'ubuntu-22.04'
             gcc: '11'
             cmake: '3.29.3'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'debian-10'
             gcc: '8'
             cmake: '3.25'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'debian-11'
             gcc: '10'
             cmake: '3.29.3'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
-            build: true
+            build: false
           - base: 'debian-12'
             gcc: '12'
             cmake: '3.29.3'
+            vcpkg: '2024.05.24'
+            runner: ubuntu-22.04
+            build: false
+          - base: 'alpine-3.21'
+            gcc: '14'
+            cmake: '3.31.3'
             vcpkg: '2024.05.24'
             runner: ubuntu-22.04
             build: true

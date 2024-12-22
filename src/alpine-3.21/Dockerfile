@@ -13,10 +13,12 @@ RUN apk update && `
     apk add `
     git `
     bash `
+    build-base `
     musl-dev `
     curl `
     g++ `
     make `
+    ninja `
     cmake `
     wget `
     curl `
@@ -32,4 +34,5 @@ RUN apk update && `
 
 ENV `
     # VCPKG root
-    VCPKG_INSTALLATION_ROOT=/vcpkg
+    VCPKG_INSTALLATION_ROOT=/vcpkg `
+    VCPKG_FORCE_SYSTEM_BINARIES=1

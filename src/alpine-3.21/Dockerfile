@@ -112,7 +112,7 @@ RUN apk update && `
     zip `
     unzip `
     tar `
-    pkg-config && `
+    pkgconfig && `
     git clone https://github.com/Microsoft/vcpkg.git && `
     cd vcpkg && `
     git checkout fba75d09065fcc76a25dcf386b1d00d33f5175af && `

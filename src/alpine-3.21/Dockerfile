@@ -102,6 +102,8 @@ RUN apk update && `
     musl-dev `
     curl `
     g++ `
+    gcc `
+    libstdc++ `
     make `
     ninja `
     cmake `
@@ -109,7 +111,8 @@ RUN apk update && `
     curl `
     zip `
     unzip `
-    tar &&`
+    tar `
+    pkg-config && `
     git clone https://github.com/Microsoft/vcpkg.git && `
     cd vcpkg && `
     git checkout fba75d09065fcc76a25dcf386b1d00d33f5175af && `

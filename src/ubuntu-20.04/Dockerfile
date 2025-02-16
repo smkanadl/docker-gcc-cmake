@@ -1,6 +1,7 @@
 # escape=`
 
-FROM ubuntu:20.04
+FROM ghcr.io/smkanadl/ado-base-images:ubuntu-20.04
+
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
 # https://apt.kitware.com/

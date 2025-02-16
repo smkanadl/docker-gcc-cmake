@@ -1,6 +1,6 @@
 # escape=`
 
-FROM ghcr.io/smkanadl/ado-base-images:alpine-3.21
+FROM ghcr.io/smkanadl/ado-base-images:alpine-3.18
 
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 

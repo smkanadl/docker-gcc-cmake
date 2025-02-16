@@ -1,6 +1,6 @@
 # escape=`
 
-FROM ghcr.io/smkanadl/ado-base-images:debian-11
+FROM ghcr.io/smkanadl/ado-base-images:ubuntu-24.04
 
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
@@ -11,8 +11,8 @@ RUN apt-get update && `
     DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
     git `
     build-essential `
-    gcc-10 `
-    g++-10 `
+    gcc-14 `
+    g++-14 `
     pkg-config `
     ca-certificates `
     gpg `
@@ -24,7 +24,7 @@ RUN apt-get update && `
     mono-complete `
     && `
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && `
-    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list && `
+    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ noble main' | tee /etc/apt/sources.list.d/kitware.list && `
     apt-get update && `
     rm /usr/share/keyrings/kitware-archive-keyring.gpg && `
     DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
@@ -32,8 +32,8 @@ RUN apt-get update && `
     cmake `
     && `
     rm -rf /var/lib/apt/lists/* && `
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 40 && `
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 40 && `
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 40 && `
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 40 && `
     git clone https://github.com/Microsoft/vcpkg.git && `
     cd vcpkg && `
     git checkout fba75d09065fcc76a25dcf386b1d00d33f5175af && `

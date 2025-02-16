@@ -1,6 +1,7 @@
 # escape=`
 
-FROM debian:buster-slim
+FROM FROM ghcr.io/smkanadl/ado-base-images:debian-10
+
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
 # https://apt.kitware.com/

@@ -1,6 +1,7 @@
 # escape=`
 
-FROM debian:bookworm-slim
+FROM ghcr.io/smkanadl/ado-base-images:debian-12
+
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
 # https://apt.kitware.com/

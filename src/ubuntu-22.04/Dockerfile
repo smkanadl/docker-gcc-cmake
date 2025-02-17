@@ -43,4 +43,5 @@ RUN apt-get update && `
 
 ENV `
     # VCPKG root
-    VCPKG_INSTALLATION_ROOT=/vcpkg
+    VCPKG_INSTALLATION_ROOT=/vcpkg `
+	VCPKG_DISABLE_METRICS=1

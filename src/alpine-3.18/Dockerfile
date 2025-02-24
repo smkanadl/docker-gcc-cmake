@@ -31,7 +31,8 @@ RUN apk update && `
     zip `
     unzip `
     tar `
-    pkgconfig && `
+    pkgconfig `
+	libsecret && `
 	# IMPORTANT: Downlaod a copy of NuGet as VCPKG_FORCE_SYSTEM_BINARIES prohibits downloads and REMOVE the .exe - othewise it will not be found!
 	curl -o /usr/local/bin/nuget https://dist.nuget.org/win-x86-commandline/v6.13.1/nuget.exe && `
     git clone https://github.com/Microsoft/vcpkg.git && `

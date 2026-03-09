@@ -1,6 +1,6 @@
 # escape=`
 
-FROM ghcr.io/smkanadl/ado-base-images:debian-12
+FROM ghcr.io/smkanadl/ado-base-images:debian-12-node-24
 
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
@@ -23,18 +23,6 @@ RUN apt-get update && `
     unzip `
     tar `
     mono-complete `
-    && `
-    echo 'deb http://security.ubuntu.com/ubuntu focal-security main' | tee /etc/apt/sources.list.d/focal-security.list && `
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C && `
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 `
-    && `
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && `
-    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list && `
-    apt-get update && `
-    rm /usr/share/keyrings/kitware-archive-keyring.gpg && `
-    DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
-    kitware-archive-keyring `
-    libssl1.1 `
     cmake `
     && `
     rm -rf /var/lib/apt/lists/* && `

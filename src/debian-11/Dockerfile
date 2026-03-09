@@ -1,6 +1,6 @@
 # escape=`
 
-FROM ghcr.io/smkanadl/ado-base-images:debian-11
+FROM ghcr.io/smkanadl/ado-base-images:debian-11-node-24
 
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 

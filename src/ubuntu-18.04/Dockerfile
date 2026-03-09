@@ -1,6 +1,6 @@
 # escape=`
 
-FROM ghcr.io/smkanadl/ado-base-images:ubuntu-18.04
+FROM ghcr.io/smkanadl/ado-base-images:ubuntu-18.04-node-24
 
 LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cmake"
 
@@ -9,12 +9,12 @@ LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cm
 # https://github.com/mono/mono/issues/21584
 # https://lindevs.com/install-vcpkg-on-ubuntu
 
+ENV CMAKE_VERSION=3.31.5
+
 RUN apt-get update && `
     DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
     git `
     build-essential `
-    gcc-8 `
-    g++-8 `
     pkg-config `
     ca-certificates `
     gpg `
@@ -23,24 +23,23 @@ RUN apt-get update && `
     zip `
     unzip `
     tar `
-    && `
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && `
-    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ bionic main' | tee /etc/apt/sources.list.d/kitware.list && `
-    apt-get update && `
-    rm /usr/share/keyrings/kitware-archive-keyring.gpg && `
-    gpg --keyserver keyserver.ubuntu.com --recv 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && `
+    && wget https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.sh -O /tmp/cmake.sh `
+    && chmod +x /tmp/cmake.sh `
+    && mkdir -p /opt/cmake-$CMAKE_VERSION `
+    && /tmp/cmake.sh --skip-license --prefix=/opt/cmake-$CMAKE_VERSION `
+    && ln -s /opt/cmake-$CMAKE_VERSION/bin/cmake /usr/local/bin/cmake `
+    && rm -rf /tmp/cmake.sh `
+	# Smoke test
+	&& cmake --version `
+    && gpg --keyserver keyserver.ubuntu.com --recv 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && `
     gpg --export 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF | tee /usr/share/keyrings/mono.gpg >/dev/null && `
     gpg --batch --yes --delete-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && `
     echo 'deb [signed-by=/usr/share/keyrings/mono.gpg] https://download.mono-project.com/repo/ubuntu stable-bionic main' | tee /etc/apt/sources.list.d/mono-official-stable.list && `
     apt-get update && `
     DEBIAN_FRONTEND=noninteractive TZ=Europe/Berlin apt-get install -y `
-    kitware-archive-keyring `
-    cmake `
     mono-complete `
     && `
     rm -rf /var/lib/apt/lists/* && `
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 40 && `
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 40 && `
     git clone https://github.com/Microsoft/vcpkg.git && `
     cd vcpkg && `
     git checkout fba75d09065fcc76a25dcf386b1d00d33f5175af && `

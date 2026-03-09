@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.source="https://github.com/smkanadl/docker-gcc-cm
 
 # Use VCPKG_FORCE_SYSTEM_BINARIES to force vcpkg to use installed stuff - rather than trying to download glibc based stuff that does not work!
 # https://github.com/Docker-Hub-frolvlad/docker-alpine-mono/blob/master/Dockerfile
-RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing && `
+RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/community && `
     apk add --no-cache --virtual=.build-dependencies ca-certificates && `
     cert-sync /etc/ssl/certs/ca-certificates.crt && `
     apk del .build-dependencies

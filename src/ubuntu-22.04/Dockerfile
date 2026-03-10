@@ -29,9 +29,13 @@ RUN apt-get update && `
     && mkdir -p /opt/cmake-$CMAKE_VERSION `
     && /tmp/cmake.sh --skip-license --prefix=/opt/cmake-$CMAKE_VERSION `
     && ln -s /opt/cmake-$CMAKE_VERSION/bin/cmake /usr/local/bin/cmake `
+    && ln -s /opt/cmake-$CMAKE_VERSION/bin/ctest /usr/local/bin/ctest `
+    && ln -s /opt/cmake-$CMAKE_VERSION/bin/cpack /usr/local/bin/cpack `
     && rm -rf /tmp/cmake.sh `
-	# Smoke test
+	# smoke test
 	&& cmake --version `
+	&& ctest --version `
+	&& cpack --version `
     && rm -rf /var/lib/apt/lists/* && `
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 40 && `
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 40 && `

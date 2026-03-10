@@ -31,10 +31,14 @@ RUN apt-get update && `
     && mkdir -p /opt/cmake-$CMAKE_VERSION `
     && /tmp/cmake.sh --skip-license --prefix=/opt/cmake-$CMAKE_VERSION `
     && ln -s /opt/cmake-$CMAKE_VERSION/bin/cmake /usr/local/bin/cmake `
+    && ln -s /opt/cmake-$CMAKE_VERSION/bin/ctest /usr/local/bin/ctest `
+    && ln -s /opt/cmake-$CMAKE_VERSION/bin/cpack /usr/local/bin/cpack `
     && rm -rf /tmp/cmake.sh `
 	# Smoke test
 	&& cmake --version `
-    gpg --homedir /tmp --no-default-keyring `
+	&& ctest --version `
+	&& cpack --version `
+    && gpg --homedir /tmp --no-default-keyring `
     --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg `
     --keyserver hkp://keyserver.ubuntu.com:80 `
     --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF `
